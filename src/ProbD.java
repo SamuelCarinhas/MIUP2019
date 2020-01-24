@@ -5,8 +5,6 @@ import java.util.StringTokenizer;
 
 public class ProbD {
 
-    // BIG TLE XD
-
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer crimeData = new StringTokenizer(input.readLine());
@@ -19,8 +17,8 @@ public class ProbD {
         int suspects = Integer.parseInt(input.readLine());
         for(int i = 0; i < suspects; i++) {
             int alibis = Integer.parseInt(input.readLine());
-            boolean[] alibi = new boolean[24*60+1];
-            for(int j = 0; j < 24*60+1; j++) alibi [j] = false;
+            boolean[] alibi = new boolean[24*60];
+            for(int j = 0; j < 24*60; j++) alibi [j] = false;
             for(int j = 0; j < alibis; j++) {
                 StringTokenizer alibiData = new StringTokenizer(input.readLine());
                 String[] alibiSData = alibiData.nextToken().split(":");
@@ -29,11 +27,11 @@ public class ProbD {
                 int alibiStart = Integer.parseInt(alibiSData[0])*60 + Integer.parseInt(alibiSData[1]) - extra;
                 int alibiEnd = Integer.parseInt(alibiEData[0])*60 + Integer.parseInt(alibiEData[1]) + extra;
                 if(alibiStart < 0) alibiStart = 0;
-                if(alibiEnd > 24*60) alibiEnd = 24*60;
+                if(alibiEnd >= 24*60) alibiEnd = 24*60-1;
                 for(int l = alibiStart; l < alibiEnd; l++) alibi[l] = true;
             }
             boolean suspect = false;
-            for(int j = crimeStart; j < crimeEnd - need; j++) {
+            for(int j = crimeStart; j <= crimeEnd - need; j++) {
                 boolean found = true;
                 for(int l = j; l < j + need; l++) {
                     if(alibi[l] == true) {
