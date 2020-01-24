@@ -5,8 +5,6 @@ import java.util.StringTokenizer;
 
 public class ProbB {
 
-    //WA Test Case - 11
-
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer data = new StringTokenizer(input.readLine());
@@ -62,7 +60,7 @@ public class ProbB {
 
         System.out.println(walked);
         System.out.println(consumedEnergy);
-        System.out.println(finish ? "yes" : "no");
+        System.out.println(E == 0 ? "no" : finish ? "yes" : "no");
 
     }
 
